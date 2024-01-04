@@ -4,22 +4,6 @@ import mongoose  from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
 
-const allowedOrigins = [
-    'http://localhost:3000',
-]
-
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    },
-    credentials: true,
-    optionsSuccessStatus: 200
-}
- 
 
 const app = express(); //initialize express instance
 
@@ -28,7 +12,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 
 //setting up cors
-app.use(cors(corsOptions))
+app.use(cors())
 
 app.use('/posts', postRoutes)
 
