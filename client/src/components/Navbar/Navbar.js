@@ -1,13 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import { AppBar, Typography, Avatar, Toolbar, Button } from '@material-ui/core'
 import useStyles from './styles'
 import memories from '../../images/memories.png';
 import { Link } from 'react-router-dom'
-
+import { useDispatch } from 'react-redux';
+import { LOGOUT } from '../../constants/actionTypes';
+import {useHistory, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
     const classes = useStyles();
-    const user = null;
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const location = useLocation();
+    const logout =() => {
+        dispatch( {type : LOGOUT})
+        history.push('/')
+        setUser(null);
+    }
+    console.log('user ----->', user)
+
+    useEffect(() => {
+        const token = user?.token;
+
+        // jwt
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    },[location])
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
@@ -18,13 +37,13 @@ const Navbar = () => {
             <Toolbar className={classes.toolbar}>
                 {user ? (
                     <div className={classes.profile}>
-                        <Avatar className={classes.purpleAvatar} alt={user.result.name} src={user.result.imageUrl}>
+                        <Avatar className={classes.purpleAvatar} alt={user.result.given_name} src={user.result.picture}>
                             {user.result.name.charAt(0).toUpperCase()}
                         </Avatar>
                         <Typography className={classes.username} variant='h6'>
-                            {user.result.name}
+                            {user.result.given_name}
                         </Typography>
-                        <Button variant="contained" className={classes.logout} color="secondary">
+                        <Button variant="contained" className={classes.logout} color="secondary" onClick = {logout}>
                             Logout
                         </Button>
                     </div>
