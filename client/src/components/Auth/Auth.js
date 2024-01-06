@@ -9,14 +9,15 @@ import Icon from './Icon';
 import { useDispatch } from 'react-redux';
 import jwtDecode from 'jwt-decode'
 import { useHistory } from 'react-router-dom'
+import { signin, signup } from '../../actions/auth'
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
+    const [formData, setFormData] = useState(initialState);
     const history = useHistory();
-    // const state = null;
     const [form, setForm] = useState(initialState);
     const classes = useStyles();
     const isSingUp = false;
@@ -24,6 +25,13 @@ const Auth = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(formData)
+        if(isSignup){
+            dispatch(signup(formData, history))
+        } else{
+            dispatch(signin(formData, history))
+
+        }
     }
     const switchMode = () => {
         setForm(initialState);
@@ -36,7 +44,7 @@ const Auth = () => {
         console.log(error)
     }
 
-    const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
     const googleSuccess = async (result, token) => {
         console.log('Google Sign In was successful')
         console.log(result)

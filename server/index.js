@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose  from 'mongoose';
 import cors from 'cors';
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/users.js';
 
 
 const app = express(); //initialize express instance
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors())
 
 app.use('/posts', postRoutes)
+app.use('/user', userRoutes)
 
 const  MONGO_STRING = "mongodb://127.0.0.1:27017/SM?&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1"
 const PORT = process.env.PORT || 8000;
