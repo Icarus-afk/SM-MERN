@@ -26,3 +26,4 @@ mongoose.connect(String(MONGO_STRING))
     .then(() => app.listen(PORT, () => console.log(`Server running on port = ${PORT}`)))
     .catch((error) => console.log (`Error Occured ---> ${error.message}`))
 
+// mongoose.set('useFindAndModify', false);

@@ -20,6 +20,10 @@ export default makeStyles({
     borderRadius: '15px',
     height: '100%',
     position: 'relative',
+    transition: 'transform 0.3s ease-in-out',
+    "&:hover": {
+      transform: 'scale(1.05)'
+    }
   },
   overlay: {
     position: 'absolute',
@@ -48,5 +52,9 @@ export default makeStyles({
     padding: '0 16px 8px 16px',
     display: 'flex',
     justifyContent: 'space-between',
+  },
+  cardAction: {
+    display: 'block',
+    textAlign: 'initial',
   },
 });
