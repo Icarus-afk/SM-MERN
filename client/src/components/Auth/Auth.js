@@ -26,9 +26,9 @@ const Auth = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData)
-        if(isSignup){
+        if (isSignup) {
             dispatch(signup(formData, history))
-        } else{
+        } else {
             dispatch(signin(formData, history))
 
         }
@@ -88,7 +88,7 @@ const Auth = () => {
                         <GoogleLogin onSuccess={Response => {
                             const token = Response.credential
                             const decode = jwtDecode(token)
-                            {googleSuccess(decode, token)}
+                            { googleSuccess(decode, token) }
                         }}
                             onError={googleError}
                         />
