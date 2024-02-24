@@ -1,0 +1,7 @@
+version: '2'
+services:
+  sm-mern-server:
+    image: sm-mern-server
+    tty: true
+    ports:
+      - '8000:8000'

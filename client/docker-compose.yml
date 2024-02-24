@@ -1,0 +1,7 @@
+version: '2'
+services:
+  sm-mern-client:
+    image: sm-mern-client
+    tty: true
+    ports:
+      - '3000:3000'
