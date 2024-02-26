@@ -5,6 +5,9 @@ import cors from 'cors';
 import postRoutes from './routes/posts.js';
 import userRoutes from './routes/users.js';
 
+import dotenv from 'dotenv'
+dotenv.config()
+
 
 const app = express(); //initialize express instance
 
@@ -18,7 +21,10 @@ app.use(cors())
 app.use('/posts', postRoutes)
 app.use('/user', userRoutes)
 
-const  MONGO_STRING = "mongodb://172.17.0.1:27017/SM?&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1"
+console.log(process.env.MONGO_STRING)
+
+// const  MONGO_STRING = "mongodb://172.17.0.1:27017/SM?&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1"
+const MONGO_STRING = process.env.MONGO_STRING
 const PORT = process.env.PORT || 8000;
 
 //connecting to Mongodb
