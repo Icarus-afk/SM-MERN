@@ -21,8 +21,6 @@ app.use(cors())
 app.use('/posts', postRoutes)
 app.use('/user', userRoutes)
 
-console.log(process.env.MONGO_STRING)
-
 // const  MONGO_STRING = "mongodb://172.17.0.1:27017/SM?&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1"
 const MONGO_STRING = process.env.MONGO_STRING
 const PORT = process.env.PORT || 8000;

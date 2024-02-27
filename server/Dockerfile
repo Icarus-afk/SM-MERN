@@ -18,6 +18,7 @@ RUN npm run dotenv
 
 # Expose the port
 EXPOSE 8000
+EXPOSE 27017
 
 # Start the app
 CMD ["npm", "start"]
